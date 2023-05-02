@@ -11,10 +11,19 @@ void menu()
 void Game()
 {   //储存数据 -  二维数组
 	char board[ROW][COL];
+
 	//初始化棋盘 - 初始化为空格
 	InitBoard(board, ROW, COL);
+
 	//打印棋盘 - 本质是打印数组的内容
 	DisplayBoard(board, ROW, COL);
+
+	while (1)
+	{
+		//玩家下棋
+		PlayerMove();
+		//电脑下棋
+	}
 }
 int main()
 {
