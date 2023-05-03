@@ -1,5 +1,5 @@
 #define  _CRT_SECURE_NO_WARNINGS 1
-
+//测试游戏的逻辑
 #include "game.h"
 void menu()
 {
@@ -11,7 +11,7 @@ void menu()
 void Game()
 {   //储存数据 -  二维数组
 	char board[ROW][COL];
-
+	char ret = 0;
 	//初始化棋盘 - 初始化为空格
 	InitBoard(board, ROW, COL);
 
@@ -21,13 +21,43 @@ void Game()
 	while (1)
 	{
 		//玩家下棋
-		PlayerMove();
+		PlayerMove(board, ROW, COL);
+		DisplayBoard(board, ROW, COL);
+		ret = IsWin(board, ROW, COL);
+		if (ret != 'C')
+		{
+			break;
+		}                       //判断输赢
+
 		//电脑下棋
+		ComputerMove(board, ROW, COL);
+		DisplayBoard(board, ROW, COL);
+		ret = IsWin(board, ROW, COL);
+		if (ret != 'C')
+		{
+			break;
+		}
 	}
-}
+	if (ret == '*')
+	{
+		printf("玩家赢\n");
+	}
+	else if (ret == '#')
+	{
+		printf("电脑赢\n");
+	}
+	else
+	{
+		printf("平局\n");
+	}
+}                       //判断输赢
+	
+
 int main()
 {
+
 	int input = 0;
+	srand((unsigned int)time(NULL));
 	do
 	{
 		menu();
